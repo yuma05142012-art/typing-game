@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="static/img/favicon.svg" id="favicon">
+    <title>BeEnPazzleTyping</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <!-- <script src="static/js/higgsino.min.js"></script> -->
+    <img src="static/img/background.svg" alt="背景" class="background-image">
+
+    <!-- #1 -->
+    <header id="header">
+        <div class="logo-wrapper">
+            <div class="logo">
+                <img src="static/img/logo_color.svg" alt=BeEngineer"><h2 class="logo-str">Flash Typing</h2>
+            </div>
+        </div>
+    </header>
+
+    <!-- #2 -->
+    <section id="panel-container"></section>
+
+    <!-- #3 -->
+    <section class="game__info"></section>
+
+    <!-- #4 -->
+    <section id="results" style="display: none;"></section>
+
+    <!-- #5 -->
+    <section id="component">
+        <audio id="type_clear">
+            <source src="static/mp3/type_clear.mp3" type="audio/mp3">
+        </audio>
+        <audio id="type_miss">
+            <source src="static/mp3/type_miss.mp3" type="audio/mp3">
+        </audio>
+        <audio id="count_down">
+            <source src="static/mp3/countdown-1.mp3" type="audio/mp3">
+        </audio>
+        <audio id="start_sound">
+            <source src="static/mp3/countdown-2.mp3" type="audio/mp3">
+        </audio>
+    </section>
+
+    <script src="static/js/game.js"></script>
+</body>
+</html>
