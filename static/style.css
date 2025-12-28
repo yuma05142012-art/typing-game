@@ -183,11 +183,12 @@ input {
 
 #results  {
     display: none;
-    justify-content: center;
+    /* justify-content: center; */
+    justify-content: space-evenly;
     align-items: center;
     margin: 0 auto;
     min-width: 485px;
-    width: 40%;
+    width: 85%;
     border-bottom: thick double rgba(255, 0, 0, 0.7) ;
 }
 

@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded",() => {
 
     const panelContainer = document.getElementsByClassName("panel-container")[0];
     const wordObjList = [];
+    // const wordLength = 1;
     const wordLength = 20;
     const infoBox = document.getElementById("info");
     const missMountText = document.getElementById("missMount");
