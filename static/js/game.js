@@ -32,6 +32,14 @@ document.addEventListener("DOMContentLoaded",() => {
     const missSound = document.getElementById("type_miss");
     const countSound = document.getElementById("count_down");
     const startSound = document.getElementById("start_sound");
+    const bgm = document.getElementById("bgm_sound");
+    
+
+    let randomIndex = [];
+    for(let i = 0;i < wordLength;i++){
+        randomIndex.push(i)
+    }
+    shuffleArray(randomIndex)
 
     //4
     function shuffleArray(array) {
@@ -91,13 +99,13 @@ function displayTime(){
             panelContainer.appendChild(panel);   
         }
         panelContainer.classList.add("panel-container-play");
-        document.getElementById('panel-0').classList.add("active")
+        document.getElementById(`panel-${randomIndex[current]}`).classList.add("active")
     }
 
     function highlightCurrentPanel() {
 
-        let currentPanel = document.getElementById(`panel-${current - 1}`);
-        let nextPanel = document.getElementById(`panel-${current}`);
+        let currentPanel = document.getElementById(`panel-${randomIndex[current - 1]}`);
+        let nextPanel = document.getElementById(`panel-${randomIndex[current]}`);
 
         currentPanel.classList.remove("active");
         currentPanel.classList.add("faded");
@@ -123,8 +131,10 @@ function displayTime(){
             createPanels();
             startSound.currentTime = 0;
             startSound.play();
-            typedText = document.getElementById(`typed-${current}`);
-            untypedText = document.getElementById(`untyped-${current}`);
+            bgm.currentTime = 0;
+            bgm.play();
+            typedText = document.getElementById(`typed-${randomIndex[current]}`);
+            untypedText = document.getElementById(`untyped-${randomIndex[current]}`);
             startTime = Date.now();
             displayTime();
         },3000);
@@ -154,17 +164,17 @@ function displayTime(){
     function inputCheck(key){
         typeCount += 1;
 
-        if(key == wordObjList[current]["untyped"].charAt(0)){
+        if(key == wordObjList[randomIndex[current]]["untyped"].charAt(0)){
             clearSound.currentTime = 0;
             clearSound.play();
 
-            wordObjList[current]["typed"] = wordObjList[current]["typed"] + wordObjList[current]["untyped"].charAt(0);
-            wordObjList[current]["untyped"] = wordObjList[current]["untyped"].substring(1);
+            wordObjList[randomIndex[current]]["typed"] = wordObjList[randomIndex[current]]["typed"] + wordObjList[randomIndex[current]]["untyped"].charAt(0);
+            wordObjList[randomIndex[current]]["untyped"] = wordObjList[randomIndex[current]]["untyped"].substring(1);
 
-            typedText.textContent = wordObjList[current]["typed"];
-            untypedText.textContent = wordObjList[current]["untyped"];
+            typedText.textContent = wordObjList[randomIndex[current]]["typed"];
+            untypedText.textContent = wordObjList[randomIndex[current]]["untyped"];
 
-            if(wordObjList[current]["untyped"].length == 0){
+            if(wordObjList[randomIndex[current]]["untyped"].length == 0){
 
                 current += 1;
 
@@ -177,8 +187,8 @@ function displayTime(){
                 }
                 else{
                     highlightCurrentPanel();
-                    typedText = document.getElementById(`typed-${current}`)
-                    untypedText = document.getElementById(`untyped-${current}`)
+                    typedText = document.getElementById(`typed-${randomIndex[current]}`)
+                    untypedText = document.getElementById(`untyped-${randomIndex[current]}`)
                 }
             }
         }
@@ -195,6 +205,7 @@ function displayTime(){
     function processEndGame(){
 
         clearTimeout(timeoutID);
+        bgm.pause();
         const stopTime = (Date.now() - startTime);
         const score = parseInt((typeCount / startTime) * 6000 * (letterCount / typeCount) ** 3);
         scoreText.textContent = `SCORE : ${score}`;
