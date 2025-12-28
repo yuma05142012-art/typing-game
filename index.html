@@ -17,18 +17,59 @@
             <div class="logo">
                 <img src="static/img/logo_color.svg" alt=BeEngineer">
                 <h2 class="logo-str">Flash Typing</h2>
+                <div class="reload" onclick="location.reload()">もう一度チャレンジ</div>
+            </div>
+        </div>
+        <div class="level-wrapper">
+            <div class="level-heading">
+                <h2>レベル選択しろ</h2>
+            </div>
+            <div class="level-options">
+                <label class="level_btn active-level">
+                中学一年生レベル英単語
+                <input name="level" type="radio" value="jr-1">
+                </label>
+                <label class="level_btn">
+                中学2年生レベル英単語
+                <input name="level" type="radio" value="jr-2">
+                </label>
+                <label class="level_btn">
+                中学3年生レベル英単語
+                <input name="level" type="radio" value="jr-3">
+                </label>
+                <label class="level_btn">
+                高校1年生レベル英単語
+                <input name="level" type="radio" value="hi-1">
+                </label>
+                <label class="level_btn">
+                高校2年生レベル英単語
+                <input name="level" type="radio" value="hi-2">
+                </label>
+                <label class="level_btn">
+                高校3年生レベル英単語
+                <input name="level" type="radio" value="hi-3">
+                </label>
             </div>
         </div>
     </header>
 
     <!-- 2 -->
-    <section class="panel-container"></section>
+    <section class="panel-container">
+        <h1 id="info">スペースキーを押せ</h1>
+    </section>
 
     <!-- 3 -->
-    <section class="game__info"></section>
+    <section class="game__info">
+        <h2>MISS : <span id="missMount">0<span></h2>
+        <h2>TIME : <span id="timeText">00.000</span></h2>
+        <h2>word Count : <span id="wordCount">0</span><span id="wordLength"></span></h2>
+    </section>
 
     <!-- 4 -->
-    <section id="results"></section>
+    <section id="results">
+        <h1 id="score" class="results"></h1>
+        <h1 id="other-result" class="results"></h1>
+    </section>
 
     <!-- 5 -->
     <section id="component">
