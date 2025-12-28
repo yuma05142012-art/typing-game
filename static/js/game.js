@@ -32,7 +32,12 @@ document.addEventListener("DOMContentLoaded",() => {
     const missSound = document.getElementById("type_miss");
     const countSound = document.getElementById("count_down");
     const startSound = document.getElementById("start_sound");
-    const bgm = document.getElementById("bgm_sound");
+    let bgm = document.querySelectorAll(".bgm_sound");
+
+    let bgmList = [];
+    bgm.forEach(element => {
+        bgmList.push(element);
+    })
     
 
     let randomIndex = [];
@@ -43,12 +48,14 @@ document.addEventListener("DOMContentLoaded",() => {
 
     //4
     function shuffleArray(array) {
+        console.log(array)
         for (let i = array.length - 1; i > 0; i--) {
             // 0からiまでのランダムなインデックスを生成
             const j = Math.floor(Math.random() * (i + 1));
             // array[i] と array[j] を入れ替える
             [array[i], array[j]] = [array[j], array[i]];
         };
+        console.log(array)
         return array;
     };
 
@@ -74,6 +81,14 @@ function displayTime(){
     timeText.textContent = `${s}.${ms}`;
     timeoutID = setTimeout(displayTime, 10);
 }
+
+    function playAudio(audio){
+        console.log(audio)
+        const audioLength = audio.duration;
+        audio.currentTime = 0;
+        audio.play();
+        setTimeout(playAudio,audioLength*1000)
+    }
 
     function createPanels() {
         panelContainer.innerHTML = "";
@@ -131,8 +146,10 @@ function displayTime(){
             createPanels();
             startSound.currentTime = 0;
             startSound.play();
-            bgm.currentTime = 0;
-            bgm.play();
+            shuffleArray(bgmList)
+            bgmList[0].currentTime = 0;
+            bgmList[0].loop = true;
+            bgmList[0].play();
             typedText = document.getElementById(`typed-${randomIndex[current]}`);
             untypedText = document.getElementById(`untyped-${randomIndex[current]}`);
             startTime = Date.now();
